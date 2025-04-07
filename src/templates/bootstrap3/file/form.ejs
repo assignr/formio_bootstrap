@@ -78,24 +78,24 @@
     <button class="btn btn-primary" ref="toggleCameraMode">{{ctx.t('switchToFileUpload')}}</button>
   {% } %}
 {% } %}
-{% ctx.statuses.forEach(function(status) { %}
-  <div class="file {{ctx.statuses.status === 'error' ? ' has-error' : ''}}">
+{% ctx.filesToUpload.forEach(function(file) { %}
+  <div class="file {{file.status === 'error' ? ' has-error' : ''}}">
     <div class="row">
-      <div class="fileName col-form-label col-sm-10">{{status.originalName}} <i class="{{ctx.iconClass('remove')}}" ref="fileStatusRemove"></i></div>
-      <div class="fileSize col-form-label col-sm-2 text-right">{{ctx.fileSize(status.size)}}</div>
+      <div class="fileName col-form-label col-sm-10">{{file.originalName}} <i class="{{ctx.iconClass('remove')}}" ref="fileToSyncRemove"></i></div>
+      <div class="fileSize col-form-label col-sm-2 text-right">{{ctx.fileSize(file.size)}}</div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        {% if (status.status === 'progress') { %}
+        {% if (file.status === 'progress') { %}
           <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="{{status.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status.progress}}%">
-              <span class="sr-only">{{status.progress}}% {{ctx.t('completeStatus')}}</span>
+            <div id="{{file.id}}" class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%">
+              <span class="sr-only">{{file.progress}}% {{ctx.t('completeStatus')}}</span>
             </div>
           </div>
-        {% } else if (status.status === 'error'){ %}
-          <div class="alert alert-danger bg-{{status.status}}">{{ctx.t(status.message)}}</div>
+        {% } else if (file.status === 'error'){ %}
+          <div class="alert alert-danger bg-{{file.status}}">{{ctx.t(file.message)}}</div>
         {% } else { %}
-          <div class="bg-{{status.status}}">{{ctx.t(status.message)}}</div>
+          <div class="bg-{{file.status}}">{{ctx.t(file.message)}}</div>
         {% } %}
       </div>
     </div>
