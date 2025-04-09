@@ -87,8 +87,8 @@
     <div class="row">
       <div class="col-sm-12">
         {% if (file.status === 'progress') { %}
-          <div class="progress">
-            <div id="{{file.id}}" class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%">
+          <div class="status progress">
+            <div id="{{file.id}}" class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%" ref="progress">
               <span class="sr-only">{{file.progress}}% {{ctx.t('completeStatus')}}</span>
             </div>
           </div>
